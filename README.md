@@ -92,15 +92,6 @@ Client2 çalıştırıldığında:
 4. Gelen kontrol bilgisi ile hesaplanan kontrol bilgisini karşılaştırır
 5. Sonucu ekrana yazdırır
 
-**Örnek Çıktı:**
-```
-Received Data : HEZLO
-Method : CRC16
-Sent Check Bits : 87AF
-Computed Check Bits : 92B1
-Status : DATA CORRUPTED
-```
-
 ## Hata Tespit Yöntemleri
 
 ### 1. Parity Bit (Parite)
@@ -163,39 +154,6 @@ Server, client1'den gelen veriyi bozmak için aşağıdaki yöntemlerden bir vey
    - Kontrol bilgisini hesaplar ve karşılaştırır
    - Sonucu gösterir
 
-## Örnek Senaryo
-
-```
-Terminal 1 (Server):
-$ ./server 8080
-Server listening on port 8080
-Waiting for client1 (sender) to connect...
-client1 connected
-Received packet from client1: HELLO|CRC16|87AF
-Original Data: HELLO
-Method: CRC16
-Control: 87AF
-Corrupted Data: HEZLO
-Waiting for client2 (receiver) to connect...
-client2 connected
-Forwarded corrupted packet to client2: HEZLO|CRC16|87AF
-
-Terminal 2 (Client1):
-$ ./client1 127.0.0.1 8080
-Enter text (single line): HELLO
-Choose method: 1=PARITY 2=2DPAR 3=CRC16 4=HAMMING 5=CHECKSUM
-3
-Sent packet (18 bytes): HELLO|CRC16|87AF
-
-Terminal 3 (Client2):
-$ ./client2 127.0.0.1 8080
-Received Data : HEZLO
-Method : CRC16
-Sent Check Bits : 87AF
-Computed Check Bits : 92B1
-Status : DATA CORRUPTED
-```
-
 ## Teknik Detaylar
 
 - **Protokol**: TCP/IP
@@ -210,8 +168,4 @@ Status : DATA CORRUPTED
 - Server her çalıştırmada farklı hata enjeksiyonları uygular (rastgele)
 - Kontrol bilgileri hex formatında gösterilir
 - Windows'ta derleme için Winsock2 kütüphanesi otomatik olarak bağlanır
-
-## Lisans
-
-Bu proje eğitim amaçlıdır.
 
