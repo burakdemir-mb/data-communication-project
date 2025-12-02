@@ -1,0 +1,25 @@
+# Compiled executables
+*.exe
+*.out
+client1
+client2
+server
+client1.exe
+client2.exe
+server.exe
+
+# Object files
+*.o
+*.obj
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
